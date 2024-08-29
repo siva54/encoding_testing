@@ -1,6 +1,6 @@
-use cookie::Cookie;
+use std::fs;
 use std::fs::File;
-use std::io::BufReader;
+use std::io::Write;
 
 fn main() {
     println!("Hello, world!");
@@ -8,14 +8,22 @@ fn main() {
     let file = "ascii.txt";
     let encoded_file = "ascii_encoded.txt";
 
-    let mut f = File::create(encoded_file).expect("Unable to create file");
-    let lines = BufReader::new(File::open(file).expect("Unable to read file"))
-        .lines()
-        .map(|l| l.expect("Unable to read line"))
-        .map(|l| Cookie::parse_encoded(l.as_str()).map(|c| c.encoded().to_string()))
-        .filter_map(|l| l.ok());
+    let content = fs::read_to_string(file).expect("Unable to read file");
+    println!("content: {}", content);
+    let cookie = cookie::Cookie::new("test", &content);
+    let encoded: String = match cookie::Cookie::parse_encoded(cookie.to_string()).unwrap() {
+        cookie => {
+            println!("parsed: {}", cookie.to_string());
+            cookie::Cookie::encoded(&cookie).to_string()
+        },
+        _ => {
+            println!("failed");
+            String::new()
+        },
+    };
+    println!("encoded: {}", encoded);
 
-    for line in lines {
-        writeln!(f, "{}", line).expect("Unable to write line");
-    }
+    let mut f = File::create(encoded_file).expect("Unable to create file");
+    f.write_all(encoded.as_bytes())
+        .expect("Unable to write file");
 }

@@ -1,0 +1,17 @@
+Original
+test=!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+
+URI Encoding using JS
+test%3D!%5C%22%23%24%25%26'()*%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~
+
+Cookie Encoding using cookie percent-encoding
+test=!%5C%22%23$%25&'%28%29*+%2C-.%2F0123456789%3A%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~
+
+Characters encoded in percent but not in URI,
+(
+)
+
+Characters encoded in URI but not in percent,
++
+$
+&

@@ -6,6 +6,9 @@ console.log("hello");
 const file: string = path.join(__dirname, 'ascii.txt');
 const content: string[] = fs.readFileSync(file, 'utf8').split('\n');
 const encodedFile: string = path.join(__dirname, 'ascii_encoded.txt');
+if (fs.existsSync(encodedFile)) {
+    fs.unlinkSync(encodedFile);
+}
 
 content.forEach((line: string) => {
     const encoded: string = encodeURIComponent(line);
