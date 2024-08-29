@@ -15,3 +15,4 @@ Characters encoded in URI but not in percent,
 +
 $
 &
+=
