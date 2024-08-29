@@ -1,0 +1,7 @@
+[package]
+name = "cookie_example"
+version = "0.1.0"
+authors = ["seesala.kiran@gmail.com"]
+
+[dependencies]
+cookie = "0.18.0"
